@@ -6,19 +6,27 @@ import {
   AllowNull,
   Unique,
   CreatedAt,
-  UpdatedAt,
   DeletedAt,
   DataType,
   Model,
+  BelongsToMany,
+  ForeignKey,
 } from 'sequelize-typescript';
+import { UpdatedAt } from 'sequelize-typescript/dist/model/column/timestamps/updated-at';
+import { Song, UserSong } from 'src/modules/song/entities/song.entity';
 
 @Table({ paranoid: true, tableName: 'Users' }) 
 export class User extends Model {
+
+  @BelongsToMany(()=> Song, ()=> UserSong)
+  songs: Song[]
+
   @PrimaryKey
   @Default(DataType.UUIDV4)
   @Column({ type: DataType.UUID })
   id: string;
 
+  @AllowNull(false) 
   @Column({
     type: DataType.STRING,
     validate: {
@@ -28,21 +36,9 @@ export class User extends Model {
       },
     },
   })
-  @AllowNull(false) 
   username: string;
 
-  @Column({
-    type: DataType.STRING,
-    validate: {
-      len: {
-        args: [8, 25],
-        msg: 'La longitud máxima permitida es de 25 caracteres y mínima de 8',
-      },
-    },
-  })
   @AllowNull(false) 
-  password: string;
-
   @Column({
     type: DataType.STRING,
     validate: {
@@ -52,12 +48,23 @@ export class User extends Model {
       },
     },
   })
+  password: string;
+  
   @Unique
   @AllowNull(false) 
+  @Column({
+    type: DataType.STRING,
+    validate: {
+      len: {
+        args: [8, 25],
+        msg: 'La longitud máxima permitida es de 25 caracteres y mínima de 8',
+      },
+    },
+  })
   email: string;
 
-  @Column({ type: DataType.BOOLEAN })
   @Default(false)
+  @Column({ type: DataType.BOOLEAN })
   premium: boolean;
 
   @Column({ type: DataType.TEXT })
@@ -66,16 +73,8 @@ export class User extends Model {
   @Column({ type: DataType.STRING })
   otpSecret: string;
 
-  @Column({ type: DataType.INTEGER })
   @Default(0)
+  @Column({ type: DataType.INTEGER })
   otpCounter: number;
 
-  @CreatedAt
-  creationDate: Date;
-
-  @UpdatedAt
-  updatedOn: Date;
-
-  @DeletedAt
-  deletionDate: Date;
 }
