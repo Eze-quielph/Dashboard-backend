@@ -5,20 +5,31 @@ import {
   PrimaryKey,
   Default,
   CreatedAt,
-  UpdatedAt,
   DeletedAt,
-  DataType
+  DataType,
+  Model,
+  Index,
+  Unique
 } from 'sequelize-typescript';
+import { UpdatedAt } from 'sequelize-typescript/dist/model/column/timestamps/updated-at';
 
 @Table({ paranoid: true })
-export class UserAdmi {
+export class UserAdmi extends Model{
   @PrimaryKey
   @Default(DataType.UUIDV4)
+  @Index
   @Column({
     type: DataType.UUID,
   })
   id: string;
 
+  @Unique
+  @AllowNull(false)
+  @Index
+  @Column(DataType.STRING)
+  email: string
+
+  @AllowNull(false)
   @Column({
     type: DataType.STRING,
     validate: {
@@ -28,19 +39,18 @@ export class UserAdmi {
       },
     },
   })
-  @AllowNull
   name: string;
-
+  
+  @AllowNull(false)
   @Column({
     type: DataType.STRING,
     validate: {
       len: {
-        args: [8, 25],
-        msg: 'La longitud máxima permitida es de 25 caracteres y minima de 8',
+        args: [8, 3000],
+        msg: 'La longitud máxima permitida es de 3000 caracteres y minima de 8',
       },
     },
   })
-  @AllowNull
   password: string;
 
   @CreatedAt

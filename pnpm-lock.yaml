@@ -11,9 +11,15 @@ dependencies:
   '@nestjs/core':
     specifier: ^10.0.0
     version: 10.2.5(@nestjs/common@10.2.5)(@nestjs/platform-express@10.2.5)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+  '@nestjs/mapped-types':
+    specifier: ^2.0.2
+    version: 2.0.2(@nestjs/common@10.2.5)(class-validator@0.14.0)(reflect-metadata@0.1.13)
   '@nestjs/platform-express':
     specifier: ^10.0.0
     version: 10.2.5(@nestjs/common@10.2.5)(@nestjs/core@10.2.5)
+  '@nestjs/sequelize':
+    specifier: ^10.0.0
+    version: 10.0.0(@nestjs/common@10.2.5)(@nestjs/core@10.2.5)(reflect-metadata@0.1.13)(rxjs@7.8.1)(sequelize-typescript@2.1.5)(sequelize@6.33.0)
   '@types/bcrypt':
     specifier: ^5.0.0
     version: 5.0.0
@@ -73,6 +79,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.3.1
     version: 20.6.1
+  '@types/sequelize':
+    specifier: ^4.28.15
+    version: 4.28.15
   '@types/supertest':
     specifier: ^2.0.12
     version: 2.0.12
@@ -997,6 +1006,24 @@ packages:
     transitivePeerDependencies:
       - encoding
 
+  /@nestjs/mapped-types@2.0.2(@nestjs/common@10.2.5)(class-validator@0.14.0)(reflect-metadata@0.1.13):
+    resolution: {integrity: sha512-V0izw6tWs6fTp9+KiiPUbGHWALy563Frn8X6Bm87ANLRuE46iuBMD5acKBDP5lKL/75QFvrzSJT7HkCbB0jTpg==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
+      class-transformer: ^0.4.0 || ^0.5.0
+      class-validator: ^0.13.0 || ^0.14.0
+      reflect-metadata: ^0.1.12
+    peerDependenciesMeta:
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
+    dependencies:
+      '@nestjs/common': 10.2.5(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      class-validator: 0.14.0
+      reflect-metadata: 0.1.13
+    dev: false
+
   /@nestjs/platform-express@10.2.5(@nestjs/common@10.2.5)(@nestjs/core@10.2.5):
     resolution: {integrity: sha512-BChjJfsVtsvds31rp5V7LwM2XEQaxkFKUE0TGSH91m95FRO65Fii5RH6atasmhZTIW+T8LR5LuI/MO7cgZOiVg==}
     peerDependencies:
@@ -1042,6 +1069,25 @@ packages:
     transitivePeerDependencies:
       - chokidar
     dev: true
+
+  /@nestjs/sequelize@10.0.0(@nestjs/common@10.2.5)(@nestjs/core@10.2.5)(reflect-metadata@0.1.13)(rxjs@7.8.1)(sequelize-typescript@2.1.5)(sequelize@6.33.0):
+    resolution: {integrity: sha512-ofbIYwC3S1rRtS2LlmSKlVrLt/23zKLyuomAosF3ZNqqm5zdY4V87WeU8KXly+AdjmzNw6JVoW+i4iDGiatCNA==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
+      '@nestjs/core': ^8.0.0 || ^9.0.0 || ^10.0.0
+      reflect-metadata: ^0.1.13
+      rxjs: ^7.2.0
+      sequelize: ^6.3.5
+      sequelize-typescript: ^2.0.0
+    dependencies:
+      '@nestjs/common': 10.2.5(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/core': 10.2.5(@nestjs/common@10.2.5)(@nestjs/platform-express@10.2.5)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      reflect-metadata: 0.1.13
+      rxjs: 7.8.1
+      sequelize: 6.33.0(pg-hstore@2.3.4)(pg@8.11.3)
+      sequelize-typescript: 2.1.5(@types/node@20.6.1)(@types/validator@13.11.1)(reflect-metadata@0.1.13)(sequelize@6.33.0)
+      uuid: 9.0.0
+    dev: false
 
   /@nestjs/testing@10.2.5(@nestjs/common@10.2.5)(@nestjs/core@10.2.5)(@nestjs/platform-express@10.2.5):
     resolution: {integrity: sha512-CaM8STNVyDdMhYnDD6aYnVWPz2ienrSDgMl7nkCAC0wcvKhldWuXQ2syTvQE243IIFOX/bMNuW3MsiqbaXfXxQ==}
@@ -1173,6 +1219,10 @@ packages:
       '@types/node': 20.6.1
     dev: false
 
+  /@types/bluebird@3.5.39:
+    resolution: {integrity: sha512-0h2lKudcFwHih8NHAgt/uyAIUQDO0AdfJYlWBXD8r+gFDulUi2CMZoQSh2Q5ol1FMaHV9k7/4HtcbA8ABtexmA==}
+    dev: true
+
   /@types/body-parser@1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
@@ -1182,6 +1232,12 @@ packages:
 
   /@types/connect@3.4.36:
     resolution: {integrity: sha512-P63Zd/JUGq+PdrM1lv0Wv5SBYeA2+CORvbrXbngriYY0jzLUWfQMQQxOhjONEz/wlHOAxOdY7CY65rgQdTjq2w==}
+    dependencies:
+      '@types/node': 20.6.1
+    dev: true
+
+  /@types/continuation-local-storage@3.2.5:
+    resolution: {integrity: sha512-ZAeaH801PDMThuIuZD7FdpcdD6HmwKjyqgJpYDmpSZ9CMcWiT1F6A7wIIS9C8Q50hp7zR6+mPoDTpiR4GHGKmw==}
     dependencies:
       '@types/node': 20.6.1
     dev: true
@@ -1275,6 +1331,10 @@ packages:
       '@types/node': 20.6.1
     dev: false
 
+  /@types/lodash@4.14.198:
+    resolution: {integrity: sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==}
+    dev: true
+
   /@types/mime@1.3.2:
     resolution: {integrity: sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==}
     dev: true
@@ -1311,6 +1371,15 @@ packages:
     dependencies:
       '@types/mime': 1.3.2
       '@types/node': 20.6.1
+    dev: true
+
+  /@types/sequelize@4.28.15:
+    resolution: {integrity: sha512-DlwOs4Dz2s+bDlL4RFxl5mJZJC2r1Z7/hlTPIF0JF1RciivH120yEQF0gYQI9NXd3+KJOmvFyScaEO/7dxGQew==}
+    dependencies:
+      '@types/bluebird': 3.5.39
+      '@types/continuation-local-storage': 3.2.5
+      '@types/lodash': 4.14.198
+      '@types/validator': 13.11.1
     dev: true
 
   /@types/serve-static@1.15.2:
@@ -5567,6 +5636,11 @@ packages:
 
   /uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
+
+  /uuid@9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
     hasBin: true
     dev: false
 
