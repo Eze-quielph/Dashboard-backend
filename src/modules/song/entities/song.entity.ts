@@ -55,7 +55,7 @@ import { User } from 'src/modules/user/entities/user.entity';
       type: DataType.STRING,
       validate: {
         len: {
-          args: [2, 20],
+          args: [2, 2000],
           msg: 'La longitud máxima permitida es de 20 caracteres y mínima de 2',
         },
       },
@@ -106,14 +106,6 @@ import { User } from 'src/modules/user/entities/user.entity';
     @Column({ type: DataType.INTEGER })
     Points: number;
   
-    @CreatedAt
-    creationDate: Date;
-  
-    @UpdatedAt
-    updatedOn: Date;
-  
-    @DeletedAt
-    deletionDate: Date;
   }
   
 @Table({ paranoid: true, tableName: 'user_song' })
