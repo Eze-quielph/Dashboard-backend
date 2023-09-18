@@ -6,9 +6,10 @@ import { UserAdmiModule } from './modules/user-admi/user-admi.module';
 import { UserModule } from './modules/user/user.module';
 import { SongModule } from './modules/song/song.module';
 import { AuthModule } from './modules/auth/auth/auth.module';
+import {ConfigModule} from '@nestjs/config'
 
 @Module({
-  imports: [DatabaseModule, UserAdmiModule, UserModule, SongModule, AuthModule],
+  imports: [ConfigModule.forRoot(),DatabaseModule, UserAdmiModule, UserModule, SongModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
