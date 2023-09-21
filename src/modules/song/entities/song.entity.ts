@@ -37,7 +37,6 @@ import { User } from 'src/modules/user/entities/user.entity';
     })
     name: string;
   
-    @Unique 
     @AllowNull(false)
     @Column({
       type: DataType.TEXT,

@@ -16,7 +16,7 @@ export const databaseProviders = [
         database: process.env.DATABASE ,
       });
       sequelize.addModels([Song, User, UserSong, UserAdmi]);
-      await sequelize.sync();
+      await sequelize.sync(force: true);
       return sequelize;
     },
   },
