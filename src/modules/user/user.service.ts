@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from './entities/user.entity';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class UserService {
@@ -9,6 +10,11 @@ export class UserService {
         offset: +page,
         limit: +onPage,
         paranoid: true,
+        where: {
+          deletedAt: {
+            [Op.not]: null,
+          },
+        },
       });
       if (!user) {
         throw new Error('No se pudo encontrar usuarios');
