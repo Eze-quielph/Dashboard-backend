@@ -8,6 +8,7 @@ export class UserService {
       const user = await User.findAndCountAll({
         offset: +page,
         limit: +onPage,
+        paranoid: true,
       });
       if (!user) {
         throw new Error('No se pudo encontrar usuarios');
