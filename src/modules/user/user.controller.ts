@@ -70,7 +70,7 @@ export class UserController {
     }
   }
 
-  @Delete(':id')
+  @Delete('disable/:id')
   async disable(@Param('id') id: string) {
     try {
       const userDelete = await this.userService.remove(id);
