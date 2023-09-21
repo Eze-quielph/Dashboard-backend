@@ -59,7 +59,7 @@ export class UserService {
           id: id,
         },
       });
-      if (!userDisable) {
+      if (userDisable) {
         return userDisable;
       } else {
         throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
