@@ -18,6 +18,20 @@ import { UserInterface } from './interfaces/User';
 @UseGuards(AuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
+  
+    @Delete('disable/:id')
+    async disable(@Param('id') id: string) {
+      try {
+        const userDelete = await this.userService.remove(id);
+        return userDelete;
+      } catch (error) {
+        if (error instanceof NotFoundException) {
+          throw new NotFoundException(error.message);
+        } else {
+          throw new InternalServerErrorException('Ocurrió un error interno');
+        }
+      }
+    }
 
   @Get('all')
   async getAll(
@@ -61,20 +75,6 @@ export class UserController {
     try {
       const user = await this.userService.update(id, premium);
       return user;
-    } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw new NotFoundException(error.message);
-      } else {
-        throw new InternalServerErrorException('Ocurrió un error interno');
-      }
-    }
-  }
-
-  @Delete('disable/:id')
-  async disable(@Param('id') id: string) {
-    try {
-      const userDelete = await this.userService.remove(id);
-      return userDelete;
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw new NotFoundException(error.message);
